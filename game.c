@@ -42,6 +42,14 @@ Warrior createRandomWarrior() {
   return createWarrior(name);
 }
 
+/* Returns true if the defender is still alive */
+bool attack(Warrior *attacker, Warrior *defender) {
+  int damage = (attacker->attack * 1.5) - defender->defence; // TODO: Improve dmg calculation
+  defender->health -= damage;
+
+  return defender->health > 0;
+}
+
 int main() {
   printf("Welcome to the start of your adventure\n");
 
@@ -57,4 +65,7 @@ int main() {
 
   printf("You are %s, an intrepid warrior\n", player.name);
   printf("Your enemey is %s\n", enemy.name);
+
+  attack(&player, &enemy);
+  printf("You attack your enemy, they have %d health left\n", enemy.health);
 }
